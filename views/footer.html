@@ -1,0 +1,48 @@
+<script src="/js/jquery-1.11.1.min.js.download"></script>
+<script src="/js/main.js"></script>
+<script>
+    // Scroll animation
+    $(document).ready(function () {
+        $("header a.scrollto, .calltoaction").click(function (event) {
+            event.preventDefault();
+            var link = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: ($(link).offset().top) - 60
+            }, 500);
+            $("header a.scrollto").removeClass('active');
+            $(this).addClass('active');
+        });
+        $(".scrollIndicator").click(function (event){
+             $('html, body').animate({
+                scrollTop: ($("#howitworks").offset().top) - 60
+            }, 500);
+        });
+    });
+
+    // Manage the header on scroll
+    $(function(){
+       var shrinkHeader = 50;
+       $(window).scroll(function() {
+           var scroll = getCurrentScroll();
+           if ( scroll >= shrinkHeader ) {
+               $('header').addClass('expanded-header','slow');
+               $('header .logo').attr('src', "/images/MR_Logo_White.png")
+           }
+           else {
+               $('header').removeClass('expanded-header','slow');
+               $('header .logo').attr('src', "/images/MR_Logo.png")
+           }
+       });
+       function getCurrentScroll() {
+           return window.pageYOffset;
+       }
+    });
+
+    $(".navicon").click(function(){
+        $("header .mobile-menu").slideToggle();
+    })
+
+    $( window ).resize(function() {
+      $("header .mobile-menu").hide();
+    });
+</script>

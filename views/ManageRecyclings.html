@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+     <%include header.html%>
+</head>
+<body>
+<header>
+  <%include menu_tabs.html%>
+</header>
+
+            <!-- -->
+   <section>
+   <div class="pricing-section">
+    <h3 style="text-align: center; font-size: 14px;">Recyclings</h3>
+    <%- messages('my_message_template', locals) %>
+     <div class="table-responsive">
+                <div class="box-body no-padding">
+                  <table class="table">
+                       <tr>
+                        <td>S/N</td>
+                        <th>Month</th>
+                        <th>Number Of Interval Containers</th>
+                        <th>Number Of Demand containers</th>
+                        <th>Total Orders Per Month</th>
+                        <th>Order Type</th>
+                        <th>Order Organized</th>
+                        <th>Total Of Different Recyclers</th>
+                        <th>Cost Of App</th>
+                        <th>Time Saving</th>
+                        <th>Cost Saving</th>
+                        <th></th>
+                      </tr>
+                    <% for(var i=0; i < recyclings.length; i++) { %>
+                     <tr>
+                       <td><label style="font-weight: bold;"><%= i %></label></td>
+                       <td><%= recyclings[i].Month %></td>
+                       <td><%= recyclings[i].NumberOfIntervalContainers %></td>
+                       <td><%= recyclings[i].NumberOfDemandcontainers %></td>
+                       <td><%= recyclings[i].TotalOrdersPerMonth %></td>
+                       <td><%= recyclings[i].OrderType %></td>
+                       <td><%= recyclings[i].OrderOrganized %></td>
+                       <td><%= recyclings[i].TotalOfDifferentRecyclers %></td>
+                       <td><%= recyclings[i].CostOfApp %></td>
+                       <td><%= recyclings[i].TimeSaving %></td>
+                       <td><%= recyclings[i].CostSaving %></td>
+                       <td>
+                        <a class="btn btn-primary" href="/recyclings/edit/recycling/<%= recyclings[i]._id %>" style="padding: 3px;"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="#" class="delete-recyclings" data-id="<%= recyclings[i]._id %>" style="padding: 3px; color: #d43f3a;">Delete</a>
+
+                       </td>
+                     </tr>
+                  <% } %>
+                  </table>
+                </div>
+          </div>
+  </div>
+</section>
+ <%include footer.html%>
+</body>
+</html>

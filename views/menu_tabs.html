@@ -1,0 +1,30 @@
+<div class="wrap clear">
+        <a href="/"><img src="/images/MR_Logo.png" alt="Logo" class="logo"></a>
+        <a href="/"><img src="/images/MR_Logo_White.png" alt="" class="mobile-logo"></a>
+        <img src="/images/navicon.png" alt="" class="navicon">
+         <% if(pageIn =="home"){ %>
+                <ul class="clear">
+                    <li><a href="/" class="">Home</a></li>
+                    <li><a href="#howitworks" class="scrollto">How it works</a></li>
+                    <li><a href="#about" class="scrollto">About</a></li>
+                    <li><a href="/recyclings/recycling">Calculate</a></li>
+                </ul>  
+                 <ul class="mobile-menu clear">
+                    <li><a href="/" class="">Home</a></li>
+                    <li><a href="#howitworks" class="scrollto">How it works</a></li>
+                    <li><a href="#about" class="scrollto">About</a></li>
+                    <li><a href="/recyclings/recycling">Calculate</a></li>
+                </ul>                   
+       <% }else if(pageIn =="recycling" || pageIn =="ManageRecyclings" || pageIn =="EditRecyclings"){ %>
+                <ul class="clear">
+                    <li><a href="/" class="">Home</a></li>
+                    <li><a href="/recyclings/recycling">Calculate</a></li>
+                    <li><a href="/recyclings/ManageRecyclings">Manage Recyclings</a></li>
+                </ul>  
+                 <ul class="mobile-menu clear">
+                    <li><a href="/" class="">Home</a></li>
+                    <li><a href="/recyclings/recycling">Calculate</a></li>
+                    <li><a href="/recyclings/ManageRecyclings">Manage Recyclings</a></li>
+                </ul>      
+       <% } %>
+    </div>

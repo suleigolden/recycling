@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+     <%include header.html%>
+</head>
+<body>
+<header>
+  <%include menu_tabs.html%>
+</header>
+ 
+            <!-- -->
+            <section>
+                <div class="container" >
+                
+                    <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                         <% if(errors){ %>
+
+                          <% for(var i=0; i < errors.length; i++) { %>
+                          <div class="alert alert-danger"><%= errors[i].msg %></div>
+                          <% } %>
+
+                       <% } %>
+
+                <form id="contact-form" class="contact-form col-sm-6" method="POST" action="/recyclings/update/<%= recycling._id %>"> 
+                    <div class="col-md-12" id="logDiv">
+                        <img src="/images/MR_Logo.png" id="divLogo">
+                        <label style="margin-left: 40px; font-weight: bold;">Calculate time/cost saving</label>
+                    </div>
+                    <hr>
+                    <label>Month</label>
+                   <div class="fancy-form">
+                   <input type="month" class="form-control" name="Month" value="<%= recycling.Month %>" required/>
+                   </div> 
+                   <label>Number of interval containers (recurring order)</label>
+                   <div class="fancy-form">
+                   <select class="form-control" name="NumberOfIntervalContainers" required>
+                     <option value="<%= recycling.NumberOfIntervalContainers %>"><%= recycling.NumberOfIntervalContainers %></option>
+                     <% for(var i=1; i < 101; i++) { %>
+                          <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                   </select>
+                   </div>
+                    <label>Number of on-demand containers (on-demand order)</label>
+                   <div class="fancy-form">
+                   <input type="range" min="1" max="50" value="<%= recycling.NumberOfDemandcontainers %>" class="form-control" name="NumberOfDemandcontainers" id="myRange">
+                    <p><span id="rangeValue">
+                       <% if(recycling.NumberOfDemandcontainers <= 3){ %>
+                              <%= recycling.NumberOfDemandcontainers %> " Containers  <label style="font-weight: bold; color:#396268;">BASIC PLAN: <i style="color:#C02942;">FREE</i><label>
+                       <% }else if(recycling.NumberOfDemandcontainers <= 8){ %>
+                                <%= recycling.NumberOfDemandcontainers %> Containers <label style="font-weight: bold; color:#396268;">PROFESSIONAL PLAN: <i style="color:#C02942;">19 EUR / month</i><label>
+                       <% }else if(recycling.NumberOfDemandcontainers > 8){ %>
+                                <%= recycling.NumberOfDemandcontainers %> " Containers <label style="font-weight: bold; color:#396268;">ULTIMATE PLAN: <i style="color:#C02942;">45 EUR / month</i><label>
+                        <% } %>
+                    </span></p>
+                   </div>
+                    <label>Total orders per month</label>
+                   <div class="fancy-form">
+                   <input type="number" class="form-control" name="TotalOrdersPerMonth" placeholder="Total Orders Per Month" value="<%= recycling.TotalOrdersPerMonth %>" required/>
+                   </div>
+                   <label>Order Type</label>
+                   <div class="fancy-form">
+                   <select class="form-control" name="OrderType" required>
+                     <option value="<%= recycling.OrderType %>"><%= recycling.OrderType %></option>
+                         <option value="Emptying Container">Emptying Container</option>
+                         <option value="Exchange Container">Exchange Container</option>
+                         <option value="Pickup Container">Pickup Container</option>
+                   </select>
+                   </div>
+                    <label>How are the orders organized?</label>
+                   <div class="fancy-form">
+                    <select class="form-control" name="OrderOrganized" required>
+                     <option value="<%= recycling.OrderOrganized %>"><%= recycling.OrderOrganized %></option>
+                         <option value="Phone">By Phone</option>
+                         <option value="E-mail">By E-mail</option>
+                         <option value="Fax">Fax</option>
+                         <option value="Recycler Portal">Recycler Portal</option>
+                   </select>
+                   </div>
+                    <label>How many different recyclers do you have?</label>
+                   <div class="fancy-form">
+                   <input type="number" class="form-control" name="TotalOfDifferentRecyclers" placeholder="Total of different Recyclers" value="<%= recycling.TotalOfDifferentRecyclers %>" required/>
+                   </div>
+                   <label></label>
+                   <div class="">
+                    <button type="submit" class="btn btn-success">Calculate</button>
+                    </div>
+                  </form>
+                </div>
+
+
+            </div>
+
+
+                </div>
+            </section>
+<script type="text/javascript">
+var slider = document.getElementById("myRange");
+var output = document.getElementById("rangeValue");
+// var rangeStatus = document.getElementById("rangeStatus");
+// if(rangeStatus==0){
+//   output.innerHTML = slider.value+" Containers"+" - <label style='font-weight: bold; color:#396268;'>BASIC PLAN: <i style='color:#C02942;'>FREE</i><label>";
+// }
+
+
+slider.oninput = function() {
+ let Total = parseInt(this.value);
+ if(Total <= 3){ 
+     output.innerHTML = Total+" Containers"+" - <label style='font-weight: bold; color:#396268;'>BASIC PLAN: <i style='color:#C02942;'>FREE</i><label>";
+ }else if(Total <= 8){
+    output.innerHTML = Total+" Containers"+" - <label style='font-weight: bold; color:#396268;'>PROFESSIONAL PLAN: <i style='color:#C02942;'>19 EUR / month</i><label>";
+ }else if(Total > 8){
+    output.innerHTML = Total+" Containers"+" - <label style='font-weight: bold; color:#396268;'>ULTIMATE PLAN: <i style='color:#C02942;'>45 EUR / month</i><label>";
+ }
+ 
+}
+</script>
+ <%include footer.html%>
+</body>
+</html>
